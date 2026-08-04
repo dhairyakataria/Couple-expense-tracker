@@ -1,0 +1,60 @@
+{
+  "_comment": [
+    "Template for Bubblewrap. Copy this to the folder where you run bubblewrap,",
+    "rename it twa-manifest.json, and replace every YOUR-APP placeholder with",
+    "your real Vercel domain. Then run `bubblewrap build`.",
+    "",
+    "Alternatively just run `bubblewrap init --manifest https://YOUR-APP.vercel.app/manifest.webmanifest`",
+    "and accept the prompts — this file exists so you can see the values that matter",
+    "and skip the guesswork.",
+    "",
+    "The real twa-manifest.json is gitignored because Bubblewrap writes your",
+    "keystore password into it."
+  ],
+
+  "packageId": "app.together.household",
+  "host": "YOUR-APP.vercel.app",
+  "name": "Together",
+  "launcherName": "Together",
+  "display": "standalone",
+  "orientation": "portrait",
+
+  "themeColor": "#3b6ef5",
+  "themeColorDark": "#3b6ef5",
+  "navigationColor": "#ffffff",
+  "navigationColorDark": "#191d25",
+  "navigationDividerColor": "#d9dde5",
+  "backgroundColor": "#f6f7f9",
+
+  "startUrl": "/",
+  "webManifestUrl": "https://YOUR-APP.vercel.app/manifest.webmanifest",
+  "iconUrl": "https://YOUR-APP.vercel.app/icons/icon-512.png",
+  "maskableIconUrl": "https://YOUR-APP.vercel.app/icons/icon-maskable-512.png",
+
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+
+  "shortcuts": [
+    {
+      "name": "Add expense",
+      "shortName": "Add",
+      "url": "/add",
+      "chosenIconUrl": "https://YOUR-APP.vercel.app/icons/icon-192.png"
+    }
+  ],
+
+  "signingKey": {
+    "path": "./android.keystore",
+    "alias": "android"
+  },
+
+  "enableNotifications": true,
+  "fallbackType": "customtabs",
+  "features": {},
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://YOUR-APP.vercel.app/",
+  "minSdkVersion": 23,
+  "shareTarget": null,
+  "orientationLock": false
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#3b6ef5"/>
+  <!-- Two overlapping arcs: two people, one shared middle. -->
+  <circle cx="200" cy="256" r="104" fill="none" stroke="#ffffff" stroke-width="34" opacity="0.85"/>
+  <circle cx="312" cy="256" r="104" fill="none" stroke="#ffffff" stroke-width="34" opacity="0.85"/>
+  <path d="M256 168a104 104 0 0 0 0 176 104 104 0 0 0 0-176z" fill="#ffffff" opacity="0.95"/>
+</svg>

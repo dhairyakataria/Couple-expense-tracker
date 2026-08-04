@@ -1,0 +1,30 @@
+node_modules/
+.next/
+out/
+build/
+.env
+.env.local
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+.DS_Store
+supabase/.temp/
+supabase/.branches/
+
+.vercel
+.env*
+
+# Android TWA build output.
+# NEVER commit the keystore or its password — losing it means you can no
+# longer update the installed app, and leaking it lets anyone sign as you.
+# Ignore the folder's contents rather than the folder itself, otherwise git
+# will not let the template back in.
+/android/*
+!/android/twa-manifest.template.json
+*.keystore
+*.jks
+android.keystore
+twa-manifest.json
+*.apk
+*.aab

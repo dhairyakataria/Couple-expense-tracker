@@ -1,0 +1,74 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink-50: #f6f7f9;
+  --color-ink-100: #eceef2;
+  --color-ink-200: #d9dde5;
+  --color-ink-300: #b7bfcd;
+  --color-ink-400: #8b95a8;
+  --color-ink-500: #6b7688;
+  --color-ink-600: #525b6b;
+  --color-ink-700: #3f4654;
+  --color-ink-800: #2b303b;
+  --color-ink-900: #191d25;
+
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #d9e5ff;
+  --color-brand-200: #bcd1ff;
+  --color-brand-500: #3b6ef5;
+  --color-brand-600: #2a55d4;
+  --color-brand-700: #2145ab;
+
+  --color-owed-500: #0f9d76;
+  --color-owed-50: #e7f7f2;
+  --color-owing-500: #d9483b;
+  --color-owing-50: #fdeeec;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--color-ink-50);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+/* Tabular figures everywhere money appears, so columns line up and digits
+   do not jitter as amounts change. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* iOS zooms the page when a focused field is under 16px. Buttons are left
+   alone so small chip and nav labels keep their intended size. */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
