@@ -6,6 +6,7 @@ import { signOut } from '@/app/login/actions'
 import ContributionEditor from '@/components/ContributionEditor'
 import InvitePanel from '@/components/InvitePanel'
 import { CategoryManager, PaymentMethodManager } from '@/components/ManageLists'
+import LeaveHouseholdButton from '@/components/LeaveHouseholdButton'
 import { ClosedPeriods, SettlementHistory } from '@/components/PeriodAdmin'
 import type { ContributionModel } from '@/types/app'
 
@@ -107,6 +108,10 @@ export default async function SettingsPage() {
             <InvitePanel householdName={household.name} />
           </div>
         )}
+
+        <div className="mt-4 border-t border-ink-100 pt-4">
+          <LeaveHouseholdButton />
+        </div>
       </Section>
 
       <Section

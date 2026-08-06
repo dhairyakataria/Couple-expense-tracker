@@ -226,3 +226,17 @@ export async function archivePaymentMethod(id: string) {
     .eq('id', id)
   revalidatePath('/', 'layout')
 }
+
+/**
+ * Leaves the current household. This is the only intentional way to
+ * disconnect from a partner — once you leave, `requireHousehold` sends you
+ * back to onboarding, where you can start a fresh household or accept a new
+ * invite. Nothing you logged is deleted; it just stops being visible to you.
+ */
+export async function leaveHousehold(): Promise<ActionResult> {
+  const { supabase } = await currentHouseholdId()
+  const { error } = await supabase.rpc('leave_household')
+  if (error) return { error: 'Could not leave the household. Please try again.' }
+  revalidatePath('/', 'layout')
+  redirect('/onboarding')
+}
