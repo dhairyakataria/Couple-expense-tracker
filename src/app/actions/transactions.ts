@@ -10,7 +10,7 @@ import { createClient } from '@/lib/supabase/server'
  * this one choice, so the stored payer/beneficiary can never disagree with
  * what the user saw on screen.
  */
-export const ENTRY_TYPES = ['personal', 'household', 'partner_gift', 'partner_owed'] as const
+const ENTRY_TYPES = ['personal', 'household', 'partner_gift', 'partner_owed'] as const
 export type EntryType = (typeof ENTRY_TYPES)[number]
 
 const schema = z.object({
