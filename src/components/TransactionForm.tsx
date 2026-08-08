@@ -126,7 +126,6 @@ export default function TransactionForm({
       }
 
       router.push(transactionId ? `/transactions/${transactionId}` : '/')
-      router.refresh()
     })
 
   return (
@@ -341,10 +340,7 @@ export default function TransactionForm({
                   start(async () => {
                     const result = await deleteTransaction(transactionId)
                     if (result?.error) setError(result.error)
-                    else {
-                      router.push('/transactions')
-                      router.refresh()
-                    }
+                    else router.push('/transactions')
                   })
                 }
                 className="flex-1 rounded-xl bg-owing-500 px-4 py-3 font-medium text-white"

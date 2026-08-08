@@ -1,4 +1,5 @@
 import 'server-only'
+import { cache } from 'react'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { calculateSettlement } from '@/lib/settlement/engine'
@@ -19,20 +20,26 @@ import type {
   TransactionWithRefs,
 } from '@/types/app'
 
-export async function requireUser() {
+/**
+ * Wrapped in React's `cache()` so the layout and its page can both call this
+ * (and requireHousehold below) without doubling the auth round trip — Next.js
+ * only dedupes plain fetch() calls automatically, not arbitrary async
+ * functions like these Supabase calls.
+ */
+export const requireUser = cache(async () => {
   const supabase = await createClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
   return user
-}
+})
 
 /**
  * Loads the signed-in user's household and everything the entry form needs.
  * Redirects to onboarding when the user has no household yet.
  */
-export async function requireHousehold(): Promise<HouseholdContext> {
+export const requireHousehold = cache(async (): Promise<HouseholdContext> => {
   const user = await requireUser()
   const supabase = await createClient()
 
@@ -89,7 +96,7 @@ export async function requireHousehold(): Promise<HouseholdContext> {
     categories: (categoriesRes.data ?? []) as Category[],
     paymentMethods: (methodsRes.data ?? []) as PaymentMethod[],
   }
-}
+})
 
 /**
  * Pulls every settlement input for a household and runs the engine.
