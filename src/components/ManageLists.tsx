@@ -23,14 +23,14 @@ export function CategoryManager({ categories }: { categories: Category[] }) {
         {categories.map((c) => (
           <span
             key={c.id}
-            className="inline-flex items-center gap-1.5 rounded-full bg-ink-100 py-1 pl-3 pr-1.5 text-sm text-ink-700"
+            className="inline-flex items-center gap-1.5 bg-ink-100 py-1 pl-3 pr-1.5 text-sm text-ink-700"
           >
             {c.name}
             <button
               type="button"
               aria-label={`Remove ${c.name}`}
               onClick={() => start(async () => { await archiveCategory(c.id); router.refresh() })}
-              className="rounded-full p-0.5 text-ink-400 transition hover:text-owing-500"
+              className="p-0.5 text-ink-400 transition hover:text-owing-500"
             >
               <X className="h-3.5 w-3.5" />
             </button>
@@ -43,7 +43,7 @@ export function CategoryManager({ categories }: { categories: Category[] }) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="New category"
-          className="w-full rounded-xl border border-ink-200 bg-white px-3 py-2.5 outline-none focus:border-brand-500"
+          className="w-full rounded-xl border border-ink-200 bg-ink-100 px-3 py-2.5 outline-none focus:border-brand-500"
         />
         <button
           type="button"
@@ -96,7 +96,7 @@ export function PaymentMethodManager({ methods }: { methods: PaymentMethod[] }) 
               type="button"
               aria-label={`Remove ${m.label}`}
               onClick={() => start(async () => { await archivePaymentMethod(m.id); router.refresh() })}
-              className="rounded-full p-1 text-ink-400 transition hover:text-owing-500"
+              className="p-1 text-ink-400 transition hover:text-owing-500"
             >
               <X className="h-4 w-4" />
             </button>
@@ -109,7 +109,7 @@ export function PaymentMethodManager({ methods }: { methods: PaymentMethod[] }) 
           value={label}
           onChange={(e) => setLabel(e.target.value)}
           placeholder="e.g. HDFC Credit"
-          className="w-full rounded-xl border border-ink-200 bg-white px-3 py-2.5 outline-none focus:border-brand-500"
+          className="w-full rounded-xl border border-ink-200 bg-ink-100 px-3 py-2.5 outline-none focus:border-brand-500"
         />
         <button
           type="button"

@@ -139,8 +139,8 @@ export default function TransactionForm({
           className="flex w-full items-baseline justify-center gap-1"
           aria-label="Edit amount"
         >
-          <span className="text-3xl font-medium text-ink-400">₹</span>
-          <span className="tabular text-5xl font-semibold tracking-tight text-ink-900">
+          <span className="text-3xl font-extrabold text-brand-700">₹</span>
+          <span className="tabular text-5xl font-extrabold tracking-tight text-ink-900">
             {v.amount || '0'}
           </span>
         </button>
@@ -157,7 +157,7 @@ export default function TransactionForm({
                 type="button"
                 onClick={() => set('entryType', chip.value)}
                 className={`rounded-xl border px-3 py-2.5 text-left transition ${
-                  active ? 'border-brand-500 bg-brand-50' : 'border-ink-200 bg-white'
+                  active ? 'border-brand-500 bg-brand-50' : 'border-ink-200 bg-ink-100'
                 }`}
               >
                 <span className="block truncate text-sm font-medium text-ink-900">{chip.label}</span>
@@ -182,7 +182,7 @@ export default function TransactionForm({
             active={v.occurredOn === addDays(today, -1)}
             onClick={() => set('occurredOn', addDays(today, -1))}
           />
-          <label className="shrink-0 rounded-full border border-ink-200 bg-white px-3 py-1.5 text-sm text-ink-700">
+          <label className="shrink-0 border border-ink-200 bg-ink-100 px-3 py-1.5 text-sm text-ink-700">
             {v.occurredOn !== today && v.occurredOn !== addDays(today, -1)
               ? formatDayLabel(v.occurredOn, today)
               : 'Pick a date'}
@@ -203,10 +203,10 @@ export default function TransactionForm({
                 key={m}
                 type="button"
                 onClick={() => pickMerchant(m)}
-                className={`shrink-0 rounded-full border px-3 py-1.5 text-sm transition ${
+                className={`shrink-0 border px-3 py-1.5 text-sm transition ${
                   v.merchant.toLowerCase() === m.toLowerCase()
                     ? 'border-brand-500 bg-brand-50 text-brand-700'
-                    : 'border-ink-200 bg-white text-ink-700'
+                    : 'border-ink-200 bg-ink-100 text-ink-700'
                 }`}
               >
                 {m}
@@ -233,7 +233,7 @@ export default function TransactionForm({
                 onBlur={(e) => pickMerchant(e.target.value)}
                 list="merchant-options"
                 placeholder="e.g. DMart"
-                className="w-full rounded-xl border border-ink-200 bg-white px-3 py-2.5 outline-none focus:border-brand-500"
+                className="w-full rounded-xl border border-ink-200 bg-ink-100 px-3 py-2.5 outline-none focus:border-brand-500"
               />
               <datalist id="merchant-options">
                 {merchants.map((m) => (
@@ -246,7 +246,7 @@ export default function TransactionForm({
               <select
                 value={v.categoryId ?? ''}
                 onChange={(e) => set('categoryId', e.target.value || null)}
-                className="w-full rounded-xl border border-ink-200 bg-white px-3 py-2.5 outline-none focus:border-brand-500"
+                className="w-full rounded-xl border border-ink-200 bg-ink-100 px-3 py-2.5 outline-none focus:border-brand-500"
               >
                 <option value="">No category</option>
                 {categories.map((c) => (
@@ -261,7 +261,7 @@ export default function TransactionForm({
               <select
                 value={v.paymentMethodId ?? ''}
                 onChange={(e) => set('paymentMethodId', e.target.value || null)}
-                className="w-full rounded-xl border border-ink-200 bg-white px-3 py-2.5 outline-none focus:border-brand-500"
+                className="w-full rounded-xl border border-ink-200 bg-ink-100 px-3 py-2.5 outline-none focus:border-brand-500"
               >
                 <option value="">Not recorded</option>
                 {paymentMethods.map((p) => (
@@ -284,7 +284,7 @@ export default function TransactionForm({
                       className={`flex-1 rounded-xl border px-3 py-2.5 text-sm font-medium transition ${
                         v.payerUserId === m.id
                           ? 'border-brand-500 bg-brand-50 text-brand-700'
-                          : 'border-ink-200 bg-white text-ink-700'
+                          : 'border-ink-200 bg-ink-100 text-ink-700'
                       }`}
                     >
                       {m.id === me.id ? 'You' : m.display_name}
@@ -300,7 +300,7 @@ export default function TransactionForm({
                 onChange={(e) => set('notes', e.target.value)}
                 rows={2}
                 placeholder="Anything worth remembering"
-                className="w-full resize-none rounded-xl border border-ink-200 bg-white px-3 py-2.5 outline-none focus:border-brand-500"
+                className="w-full resize-none rounded-xl border border-ink-200 bg-ink-100 px-3 py-2.5 outline-none focus:border-brand-500"
               />
             </Field>
 
@@ -326,7 +326,7 @@ export default function TransactionForm({
           type="button"
           disabled={!canSave}
           onClick={save}
-          className="w-full rounded-xl bg-brand-500 px-4 py-3.5 text-lg font-medium text-white transition disabled:opacity-40"
+          className="w-full bg-brand-500 px-4 py-3.5 text-lg font-semibold text-ink-50 transition disabled:opacity-40"
         >
           {pending ? 'Saving…' : transactionId ? 'Save changes' : 'Add'}
         </button>
@@ -350,7 +350,7 @@ export default function TransactionForm({
               <button
                 type="button"
                 onClick={() => setConfirmDelete(false)}
-                className="flex-1 rounded-xl border border-ink-200 bg-white px-4 py-3 font-medium text-ink-700"
+                className="flex-1 rounded-xl border border-ink-200 bg-ink-100 px-4 py-3 font-medium text-ink-700"
               >
                 Keep it
               </button>
@@ -391,8 +391,8 @@ function DateChip({
     <button
       type="button"
       onClick={onClick}
-      className={`shrink-0 rounded-full border px-3 py-1.5 text-sm transition ${
-        active ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-ink-200 bg-white text-ink-700'
+      className={`shrink-0 border px-3 py-1.5 text-sm transition ${
+        active ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-ink-200 bg-ink-100 text-ink-700'
       }`}
     >
       {label}

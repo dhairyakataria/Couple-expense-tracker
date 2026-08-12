@@ -33,7 +33,7 @@ export default function InvitePanel({ householdName }: { householdName: string }
           type="email"
           required
           placeholder="Partner’s email"
-          className="w-full rounded-xl border border-ink-200 bg-white px-4 py-3 outline-none focus:border-brand-500"
+          className="w-full rounded-xl border border-ink-200 bg-ink-100 px-4 py-3 outline-none focus:border-brand-500"
         />
         <Submit />
       </form>
@@ -41,7 +41,7 @@ export default function InvitePanel({ householdName }: { householdName: string }
       {state.error && <p className="text-sm text-owing-500">{state.error}</p>}
 
       {state.link && (
-        <div className="space-y-3 rounded-xl bg-white p-4">
+        <div className="space-y-3 rounded-xl bg-ink-100 p-4">
           <p className="text-sm text-ink-600">
             Send this link to your partner. It works once and expires in 14 days.
           </p>

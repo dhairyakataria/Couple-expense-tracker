@@ -35,7 +35,7 @@ export default async function TransactionsPage({
   return (
     <main className="space-y-4 px-4 pt-6">
       <header className="flex items-baseline justify-between">
-        <h1 className="text-xl font-semibold tracking-tight text-ink-900">History</h1>
+        <h1 className="text-2xl font-extrabold tracking-tight text-ink-900">History</h1>
         <p className="tabular text-sm text-ink-500">
           {transactions.length} · {formatPaise(total)}
         </p>
@@ -52,7 +52,7 @@ export default async function TransactionsPage({
         <TransactionFilters members={members} categories={categories} meId={me.id} />
       </Suspense>
 
-      <section className="overflow-hidden rounded-2xl bg-white">
+      <section className="overflow-hidden rounded-2xl bg-ink-100">
         <TransactionList
           transactions={transactions}
           members={members}

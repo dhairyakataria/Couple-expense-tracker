@@ -27,11 +27,11 @@ export default function TopCategories({
           <div className="space-y-1">
             <div className="flex items-baseline justify-between text-sm">
               <span className="text-ink-700">{s.name}</span>
-              <span className="tabular font-medium text-ink-900">{formatPaise(s.paise)}</span>
+              <span className="tabular font-semibold text-ink-900">{formatPaise(s.paise)}</span>
             </div>
-            <div className="h-1.5 overflow-hidden rounded-full bg-ink-100">
+            <div className="h-1.5 overflow-hidden bg-ink-200">
               <div
-                className="h-full rounded-full bg-brand-200"
+                className="h-full bg-brand-500"
                 style={{ width: `${(s.paise / max) * 100}%` }}
               />
             </div>
@@ -43,7 +43,7 @@ export default function TopCategories({
         return (
           <li key={s.name}>
             {href ? (
-              <Link href={href} className="block rounded-lg transition active:opacity-70">
+              <Link href={href} className="block transition active:opacity-70">
                 {bar}
               </Link>
             ) : (

@@ -28,7 +28,7 @@ export default function LoginForm({ next }: { next: string }) {
         <input type="hidden" name="next" value={next} />
         <button
           type="submit"
-          className="flex w-full items-center justify-center gap-3 rounded-xl border border-ink-200 bg-white px-4 py-3 font-medium text-ink-800 transition hover:bg-ink-50"
+          className="flex w-full items-center justify-center gap-3 rounded-xl border border-ink-200 bg-ink-100 px-4 py-3 font-medium text-ink-800 transition hover:bg-ink-50"
         >
           <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
             <path
@@ -64,7 +64,7 @@ export default function LoginForm({ next }: { next: string }) {
             placeholder="Your name"
             autoComplete="name"
             required
-            className="w-full rounded-xl border border-ink-200 bg-white px-4 py-3 outline-none focus:border-brand-500"
+            className="w-full rounded-xl border border-ink-200 bg-ink-100 px-4 py-3 outline-none focus:border-brand-500"
           />
         )}
 
@@ -74,7 +74,7 @@ export default function LoginForm({ next }: { next: string }) {
           placeholder="Email"
           autoComplete="email"
           required
-          className="w-full rounded-xl border border-ink-200 bg-white px-4 py-3 outline-none focus:border-brand-500"
+          className="w-full rounded-xl border border-ink-200 bg-ink-100 px-4 py-3 outline-none focus:border-brand-500"
         />
         <input
           name="password"
@@ -83,7 +83,7 @@ export default function LoginForm({ next }: { next: string }) {
           autoComplete={mode === 'signin' ? 'current-password' : 'new-password'}
           required
           minLength={8}
-          className="w-full rounded-xl border border-ink-200 bg-white px-4 py-3 outline-none focus:border-brand-500"
+          className="w-full rounded-xl border border-ink-200 bg-ink-100 px-4 py-3 outline-none focus:border-brand-500"
         />
 
         {state.error && <p className="text-sm text-owing-500">{state.error}</p>}

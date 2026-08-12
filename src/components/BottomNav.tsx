@@ -16,7 +16,7 @@ export default function BottomNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="safe-bottom fixed inset-x-0 bottom-0 z-40 border-t border-ink-200 bg-white/95 backdrop-blur">
+    <nav className="safe-bottom fixed inset-x-0 bottom-0 z-40 border-t border-ink-200 bg-ink-50/92 backdrop-blur">
       <ul className="mx-auto flex max-w-lg items-stretch justify-between px-2">
         {ITEMS.map(({ href, label, icon: Icon, primary }) => {
           const active = href === '/' ? pathname === '/' : pathname.startsWith(href)
@@ -26,9 +26,9 @@ export default function BottomNav() {
                 <Link
                   href={href}
                   aria-label="Add a transaction"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-500 text-white shadow-lg shadow-brand-500/25"
+                  className="-mt-3.5 flex h-11 w-11 items-center justify-center bg-brand-500 text-ink-50"
                 >
-                  <Icon className="h-6 w-6" strokeWidth={2.5} />
+                  <Icon className="h-5 w-5" strokeWidth={2.5} />
                 </Link>
               </li>
             )
@@ -37,8 +37,8 @@ export default function BottomNav() {
             <li key={href} className="flex-1">
               <Link
                 href={href}
-                className={`flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium transition ${
-                  active ? 'text-brand-600' : 'text-ink-400'
+                className={`flex flex-col items-center gap-1 py-2.5 text-[10.5px] font-semibold transition ${
+                  active ? 'text-brand-700' : 'text-ink-400'
                 }`}
               >
                 <Icon className="h-5 w-5" />

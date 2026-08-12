@@ -48,7 +48,7 @@ export default function LeaveHouseholdButton() {
         <button
           type="button"
           onClick={() => setConfirming(false)}
-          className="flex-1 rounded-xl border border-ink-200 bg-white px-4 py-3 font-medium text-ink-700"
+          className="flex-1 rounded-xl border border-ink-200 bg-ink-100 px-4 py-3 font-medium text-ink-700"
         >
           Stay
         </button>

@@ -16,10 +16,10 @@ export default function StatTile({
 }) {
   const content = (
     <>
-      <p className="text-xs font-medium uppercase tracking-wide text-ink-400">{label}</p>
+      <p className="text-[11px] font-medium uppercase tracking-wide text-ink-500">{label}</p>
       <p
-        className={`tabular mt-1 text-xl font-semibold ${
-          tone === 'muted' ? 'text-ink-600' : 'text-ink-900'
+        className={`tabular mt-1 text-xl font-extrabold ${
+          tone === 'muted' ? 'text-ink-700 opacity-75' : 'text-ink-900'
         }`}
       >
         {formatPaise(paise)}
@@ -30,14 +30,11 @@ export default function StatTile({
 
   if (href) {
     return (
-      <Link
-        href={href}
-        className="block rounded-2xl bg-white p-4 transition active:bg-ink-50"
-      >
+      <Link href={href} className="block bg-ink-100 p-3.5 transition active:opacity-70">
         {content}
       </Link>
     )
   }
 
-  return <div className="rounded-2xl bg-white p-4">{content}</div>
+  return <div className="bg-ink-100 p-3.5">{content}</div>
 }

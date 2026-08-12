@@ -48,14 +48,14 @@ export default function TransactionFilters({
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search merchant or notes"
-          className="w-full rounded-xl border border-ink-200 bg-white py-2.5 pl-9 pr-9 outline-none focus:border-brand-500"
+          className="w-full rounded-xl border border-ink-200 bg-ink-100 py-2.5 pl-9 pr-9 outline-none focus:border-brand-500"
         />
         {q && (
           <button
             type="button"
             onClick={() => setQ('')}
             aria-label="Clear search"
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1.5 text-ink-400"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-ink-400"
           >
             <X className="h-4 w-4" />
           </button>
@@ -84,7 +84,7 @@ export default function TransactionFilters({
         <select
           value={category ?? ''}
           onChange={(e) => setParam('category', e.target.value || null)}
-          className="flex-1 rounded-xl border border-ink-200 bg-white px-3 py-2 text-sm outline-none focus:border-brand-500"
+          className="flex-1 rounded-xl border border-ink-200 bg-ink-100 px-3 py-2 text-sm outline-none focus:border-brand-500"
         >
           <option value="">Every category</option>
           {categories.map((c) => (
@@ -124,8 +124,8 @@ function Chip({
     <button
       type="button"
       onClick={onClick}
-      className={`shrink-0 rounded-full border px-3 py-1.5 text-sm transition ${
-        active ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-ink-200 bg-white text-ink-700'
+      className={`shrink-0 border px-3 py-1.5 text-sm transition ${
+        active ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-ink-200 bg-ink-100 text-ink-700'
       }`}
     >
       {label}

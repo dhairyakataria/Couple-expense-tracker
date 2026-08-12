@@ -1,5 +1,13 @@
 import type { Metadata, Viewport } from 'next'
+import { Archivo } from 'next/font/google'
 import './globals.css'
+
+const archivo = Archivo({
+  subsets: ['latin'],
+  weight: ['400', '600', '800'],
+  variable: '--font-archivo',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Together — household money',
@@ -13,7 +21,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#3b6ef5',
+  themeColor: '#ec3013',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
@@ -22,7 +30,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={archivo.variable}>
       <body className="min-h-full">{children}</body>
     </html>
   )

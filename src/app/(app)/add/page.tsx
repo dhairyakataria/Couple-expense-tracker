@@ -18,7 +18,7 @@ export default async function AddPage() {
         <Link
           href="/"
           aria-label="Close"
-          className="rounded-full p-2 text-ink-400 transition active:bg-ink-100"
+          className="p-2 text-ink-400 transition active:bg-ink-100"
         >
           <X className="h-5 w-5" />
         </Link>
