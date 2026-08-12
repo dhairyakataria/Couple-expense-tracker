@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 import { headers } from 'next/headers'
 import { z } from 'zod'
 import { createClient } from '@/lib/supabase/server'
+import { requireUser } from '@/lib/data'
 import { periodStartFor, todayIso, addMonths } from '@/lib/settlement/periods'
 
 export interface ActionResult {
@@ -22,10 +23,9 @@ async function siteUrl() {
 
 async function currentHouseholdId() {
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) redirect('/login')
+  // Middleware already verified this request's token; requireUser() reads
+  // that instead of hitting the Auth server a second time per action call.
+  const user = await requireUser()
 
   const { data } = await supabase
     .from('household_members')
@@ -72,10 +72,8 @@ export async function createInvite(
 
 export async function acceptInvite(token: string): Promise<ActionResult> {
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) redirect(`/login?next=${encodeURIComponent(`/invite/${token}`)}`)
+  const h = await headers()
+  if (!h.get('x-user-id')) redirect(`/login?next=${encodeURIComponent(`/invite/${token}`)}`)
 
   const { error } = await supabase.rpc('accept_invite', { p_token: token })
   if (error) return { error: error.message }
@@ -169,10 +167,7 @@ export async function updateHouseholdName(name: string): Promise<ActionResult> {
 
 export async function updateDisplayName(name: string): Promise<ActionResult> {
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) redirect('/login')
+  const user = await requireUser()
   const trimmed = name.trim().slice(0, 60)
   if (!trimmed) return { error: 'Name cannot be empty.' }
   await supabase.from('profiles').update({ display_name: trimmed }).eq('id', user.id)

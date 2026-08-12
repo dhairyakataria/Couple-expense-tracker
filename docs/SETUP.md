@@ -152,6 +152,17 @@ Then go back to Supabase → **Authentication → URL Configuration** and set th
 
 Every push to `main` redeploys automatically.
 
+**Function region must match your Supabase region.** Every page load and every
+save calls Supabase several times, and Vercel's serverless functions default
+to Washington, D.C. (`iad1`) if you never set one. If your database is in
+Mumbai or Singapore, every one of those calls is crossing the Pacific and
+back — the app will feel like it hangs for seconds on every tap even though
+the queries themselves are fast. `vercel.json` in this repo already pins the
+function region to `sin1` (Singapore) to match a Supabase project in
+`ap-southeast-1`; if you provisioned Supabase in Mumbai (`ap-south-1`)
+instead, change it to `"regions": ["bom1"]`. After changing it, redeploy —
+the new region only applies to the deployment that picks up the change.
+
 ---
 
 ## 7. Install it on your phones

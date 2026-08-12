@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 import { createClient } from '@/lib/supabase/server'
-import { loadSettlement, requireHousehold } from '@/lib/data'
+import { loadSettlement, requireHousehold, requireUser } from '@/lib/data'
 import { todayIso } from '@/lib/settlement/periods'
 
 const settleSchema = z.object({
@@ -32,10 +32,7 @@ export async function settleUp(input: z.infer<typeof settleSchema>): Promise<Act
   }
 
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) redirect('/login')
+  const user = await requireUser()
 
   const { data: membership } = await supabase
     .from('household_members')
@@ -89,15 +86,13 @@ export async function closePeriod(periodId: string): Promise<ActionResult> {
   if (period.closed) return { error: 'That period is already settled.' }
 
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const user = await requireUser()
 
   const { error } = await supabase
     .from('settlement_periods')
     .update({
       closed_at: new Date().toISOString(),
-      closed_by: user?.id ?? null,
+      closed_by: user.id,
       balance_snapshot: {
         householdTotalPaise: period.householdTotalPaise,
         jointTotalPaise: period.jointTotalPaise,
@@ -116,9 +111,7 @@ export async function closePeriod(periodId: string): Promise<ActionResult> {
 
 export async function reopenPeriod(periodId: string): Promise<ActionResult> {
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const user = await requireUser()
 
   const { error } = await supabase
     .from('settlement_periods')
@@ -126,7 +119,7 @@ export async function reopenPeriod(periodId: string): Promise<ActionResult> {
       closed_at: null,
       closed_by: null,
       reopened_at: new Date().toISOString(),
-      reopened_by: user?.id ?? null,
+      reopened_by: user.id,
     })
     .eq('id', periodId)
 

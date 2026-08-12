@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 import { createClient } from '@/lib/supabase/server'
+import { requireUser } from '@/lib/data'
 
 /**
  * The four chips a user actually taps. Everything downstream is derived from
@@ -56,10 +57,9 @@ function beneficiaryFor(input: TransactionInput) {
 
 async function context() {
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) redirect('/login')
+  // Middleware already verified this request's token; requireUser() reads
+  // that instead of hitting the Auth server a second time per action call.
+  const user = await requireUser()
 
   const { data } = await supabase
     .from('household_members')

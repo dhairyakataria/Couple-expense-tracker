@@ -1,5 +1,6 @@
 import 'server-only'
 import { cache } from 'react'
+import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { calculateSettlement } from '@/lib/settlement/engine'
@@ -25,14 +26,26 @@ import type {
  * (and requireHousehold below) without doubling the auth round trip — Next.js
  * only dedupes plain fetch() calls automatically, not arbitrary async
  * functions like these Supabase calls.
+ *
+ * Middleware already calls `supabase.auth.getUser()` for this exact request —
+ * a real network round trip to the Auth server to verify the token — and
+ * stashes the verified id/email on request headers. We trust that header
+ * here instead of paying for a second identical round trip. If it is ever
+ * missing (a code path that somehow bypassed middleware) we fall back to
+ * verifying directly, so this is never less safe, just faster on the common
+ * path.
  */
-export const requireUser = cache(async () => {
+export const requireUser = cache(async (): Promise<{ id: string; email: string | null }> => {
+  const h = await headers()
+  const headerId = h.get('x-user-id')
+  if (headerId) return { id: headerId, email: h.get('x-user-email') || null }
+
   const supabase = await createClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
-  return user
+  return { id: user.id, email: user.email ?? null }
 })
 
 /**
