@@ -90,11 +90,11 @@ export default async function DashboardPage() {
     <main className="space-y-4 px-4 pt-6">
       <header className="flex items-baseline justify-between">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight text-ink-900">{household.name}</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight text-ink-900">{household.name}</h1>
           <p className="text-sm text-ink-500">{formatPeriodLabel(startsOn, endsOn)}</p>
         </div>
         {current.closed && (
-          <span className="rounded-full bg-ink-100 px-2.5 py-1 text-xs font-medium text-ink-600">
+          <span className="bg-ink-100 px-2.5 py-1 text-xs font-semibold text-ink-600">
             Settled
           </span>
         )}
@@ -141,23 +141,23 @@ export default async function DashboardPage() {
 
       <ContributionProgress lines={current.lines} members={members} meId={me.id} />
 
-      <section className="rounded-2xl bg-white p-5">
-        <h2 className="mb-2 font-medium text-ink-900">Household spending by month</h2>
+      <section className="bg-ink-100 p-5">
+        <h2 className="mb-2 font-extrabold text-ink-900">Household spending by month</h2>
         <TrendChart data={trend} />
       </section>
 
-      <section className="rounded-2xl bg-white p-5">
-        <h2 className="mb-3 font-medium text-ink-900">Where it went</h2>
+      <section className="bg-ink-100 p-5">
+        <h2 className="mb-3 font-extrabold text-ink-900">Where it went</h2>
         <TopCategories
           slices={topCategories}
           hrefFor={(s) => (s.id ? txnHref(`&category=${s.id}`) : null)}
         />
       </section>
 
-      <section className="overflow-hidden rounded-2xl bg-white">
+      <section className="overflow-hidden bg-ink-100">
         <div className="flex items-center justify-between px-4 pt-4">
-          <h2 className="font-medium text-ink-900">Recent</h2>
-          <Link href="/transactions" className="text-sm font-medium text-brand-600">
+          <h2 className="font-extrabold text-ink-900">Recent</h2>
+          <Link href="/transactions" className="text-sm font-semibold text-brand-700">
             See all
           </Link>
         </div>

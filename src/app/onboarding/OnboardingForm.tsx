@@ -41,7 +41,7 @@ export default function OnboardingForm() {
           required
           maxLength={60}
           placeholder="e.g. Sweta & Ankit"
-          className="w-full rounded-xl border border-ink-200 bg-white px-4 py-3 outline-none focus:border-brand-500"
+          className="w-full rounded-xl border border-ink-200 bg-ink-100 px-4 py-3 outline-none focus:border-brand-500"
         />
       </div>
 
@@ -50,7 +50,7 @@ export default function OnboardingForm() {
         <select
           name="period_start_day"
           defaultValue="1"
-          className="w-full rounded-xl border border-ink-200 bg-white px-4 py-3 outline-none focus:border-brand-500"
+          className="w-full rounded-xl border border-ink-200 bg-ink-100 px-4 py-3 outline-none focus:border-brand-500"
         >
           {Array.from({ length: 28 }, (_, i) => i + 1).map((d) => (
             <option key={d} value={d}>
@@ -74,7 +74,7 @@ export default function OnboardingForm() {
         </div>
 
         {model === 'ratio' && (
-          <div className="space-y-3 rounded-xl bg-white p-4">
+          <div className="space-y-3 rounded-xl bg-ink-100 p-4">
             <div className="flex items-baseline justify-between">
               <span className="text-sm text-ink-600">Your share</span>
               <span className="tabular text-lg font-semibold text-ink-900">
@@ -110,14 +110,14 @@ export default function OnboardingForm() {
                     value={salaryMe}
                     onChange={(e) => setSalaryMe(e.target.value)}
                     placeholder="Your income"
-                    className="w-full rounded-lg border border-ink-200 bg-white px-3 py-2"
+                    className="w-full rounded-lg border border-ink-200 bg-ink-100 px-3 py-2"
                   />
                   <input
                     inputMode="numeric"
                     value={salaryPartner}
                     onChange={(e) => setSalaryPartner(e.target.value)}
                     placeholder="Their income"
-                    className="w-full rounded-lg border border-ink-200 bg-white px-3 py-2"
+                    className="w-full rounded-lg border border-ink-200 bg-ink-100 px-3 py-2"
                   />
                 </div>
                 {suggested !== null && (
@@ -158,7 +158,7 @@ function Choice({
       type="button"
       onClick={onClick}
       className={`rounded-xl border px-4 py-3 text-left transition ${
-        active ? 'border-brand-500 bg-brand-50' : 'border-ink-200 bg-white'
+        active ? 'border-brand-500 bg-brand-50' : 'border-ink-200 bg-ink-100'
       }`}
     >
       <div className="font-medium text-ink-900">{title}</div>

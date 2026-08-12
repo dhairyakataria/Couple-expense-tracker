@@ -45,7 +45,7 @@ export default function TransactionDetail({
         )}
         <p className="mt-1 text-center text-sm text-ink-500">{formatDayLabel(txn.occurred_on)}</p>
 
-        <div className="mt-6 divide-y divide-ink-100 overflow-hidden rounded-2xl bg-white">
+        <div className="mt-6 divide-y divide-ink-200 overflow-hidden bg-ink-100">
           <DetailRow label="Type" value={typeValue} />
           <DetailRow label="Paid by" value={payer?.id === me.id ? 'You' : (payer?.display_name ?? 'Someone')} />
           {txn.merchant && <DetailRow label="Merchant" value={txn.merchant} />}

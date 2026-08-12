@@ -18,10 +18,10 @@ export default function PeriodPicker({
           key={p.startsOn}
           type="button"
           onClick={() => router.replace(`/reports?period=${p.startsOn}`)}
-          className={`shrink-0 rounded-full border px-3 py-1.5 text-sm transition ${
+          className={`shrink-0 border px-3 py-1.5 text-sm transition ${
             p.startsOn === selected
               ? 'border-brand-500 bg-brand-50 text-brand-700'
-              : 'border-ink-200 bg-white text-ink-700'
+              : 'border-ink-200 bg-ink-100 text-ink-700'
           }`}
         >
           {p.label}

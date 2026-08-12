@@ -29,7 +29,7 @@ export default async function ReportsPage({
   if (!selected) {
     return (
       <main className="px-4 pt-6">
-        <h1 className="text-xl font-semibold tracking-tight text-ink-900">Reports</h1>
+        <h1 className="text-2xl font-extrabold tracking-tight text-ink-900">Reports</h1>
         <p className="mt-4 text-ink-500">Log a few transactions and reports will appear here.</p>
       </main>
     )
@@ -66,7 +66,7 @@ export default async function ReportsPage({
   return (
     <main className="space-y-4 px-4 pt-6">
       <header>
-        <h1 className="text-xl font-semibold tracking-tight text-ink-900">Reports</h1>
+        <h1 className="text-2xl font-extrabold tracking-tight text-ink-900">Reports</h1>
         <p className="text-sm text-ink-500">{formatPeriodLabel(selected.startsOn, endsOn)}</p>
       </header>
 
@@ -106,8 +106,8 @@ export default async function ReportsPage({
 
       <ContributionProgress lines={selected.lines} members={members} meId={me.id} />
 
-      <section className="rounded-2xl bg-white p-5">
-        <h2 className="mb-3 font-medium text-ink-900">By person</h2>
+      <section className="rounded-2xl bg-ink-100 p-5">
+        <h2 className="mb-3 font-extrabold text-ink-900">By person</h2>
         <ul className="text-sm">
           {members.map((m) => (
             <li key={m.id}>
@@ -125,16 +125,16 @@ export default async function ReportsPage({
         </ul>
       </section>
 
-      <section className="rounded-2xl bg-white p-5">
-        <h2 className="mb-3 font-medium text-ink-900">By category</h2>
+      <section className="rounded-2xl bg-ink-100 p-5">
+        <h2 className="mb-3 font-extrabold text-ink-900">By category</h2>
         <TopCategories
           slices={categories}
           hrefFor={(s) => (s.id ? txnHref(`&category=${s.id}`) : null)}
         />
       </section>
 
-      <section className="space-y-3 rounded-2xl bg-white p-5">
-        <h2 className="font-medium text-ink-900">This period</h2>
+      <section className="space-y-3 rounded-2xl bg-ink-100 p-5">
+        <h2 className="font-extrabold text-ink-900">This period</h2>
         {selected.closed ? (
           <p className="text-sm text-ink-500">
             Settled and locked. Reopen it from Settings if something needs correcting.

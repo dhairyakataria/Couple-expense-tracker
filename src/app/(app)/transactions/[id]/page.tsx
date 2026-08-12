@@ -68,7 +68,7 @@ export default async function TransactionDetailPage({
           <Link
             href={isEditing ? `/transactions/${id}` : '/transactions'}
             aria-label="Back"
-            className="rounded-full p-2 text-ink-500 transition active:bg-ink-100"
+            className="p-2 text-ink-500 transition active:bg-ink-100"
           >
             <ChevronLeft className="h-5 w-5" />
           </Link>
@@ -79,7 +79,7 @@ export default async function TransactionDetailPage({
         {!isEditing && !txn.deleted_at && (
           <Link
             href={`/transactions/${id}?edit=1`}
-            className="mr-1 rounded-full px-3 py-1.5 text-sm font-medium text-brand-600 transition active:bg-brand-50"
+            className="mr-1 px-3 py-1.5 text-sm font-medium text-brand-600 transition active:bg-brand-50"
           >
             Edit
           </Link>
@@ -126,7 +126,7 @@ export default async function TransactionDetailPage({
         <TransactionDetail txn={txn} members={members} me={me} />
       )}
 
-      <section className="mx-4 mb-4 rounded-2xl bg-white p-5">
+      <section className="mx-4 mb-4 rounded-2xl bg-ink-100 p-5">
         <h2 className="mb-3 font-medium text-ink-900">History</h2>
         <AuditTrail entries={(auditRes.data ?? []) as AuditEntry[]} members={members} meId={me.id} />
       </section>

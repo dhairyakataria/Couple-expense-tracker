@@ -31,7 +31,7 @@ export default function SettlementCard({
 
   if (!hasPartner) {
     return (
-      <section className="rounded-2xl bg-white p-5">
+      <section className="bg-ink-100 p-5">
         <p className="text-ink-500">
           Invite your partner to start settling up. Until then this is a personal expense log.
         </p>
@@ -41,9 +41,9 @@ export default function SettlementCard({
 
   if (!headline) {
     return (
-      <section className="rounded-2xl bg-owed-50 p-5">
-        <p className="text-sm font-medium text-owed-500">All square</p>
-        <p className="mt-1 text-2xl font-semibold tracking-tight text-ink-900">
+      <section className="border border-brand-500 p-5">
+        <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">All square</p>
+        <p className="mt-1.5 text-2xl font-extrabold tracking-tight text-ink-900">
           Nobody owes anybody
         </p>
       </section>
@@ -56,11 +56,10 @@ export default function SettlementCard({
     : `You owe ${name(headline.toUserId)}`
 
   return (
-    <section className={`rounded-2xl p-5 ${iAmOwed ? 'bg-owed-50' : 'bg-owing-50'}`}>
-      <p className={`text-sm font-medium ${iAmOwed ? 'text-owed-500' : 'text-owing-500'}`}>
-        {sentence}
-      </p>
-      <p className="tabular mt-1 text-4xl font-semibold tracking-tight text-ink-900">
+    <section className="bg-ink-100 p-5">
+      <p className="text-xs font-semibold uppercase tracking-wide text-ink-500">Balance</p>
+      <p className="mt-1.5 text-xl font-extrabold tracking-tight text-ink-900">{sentence}</p>
+      <p className="tabular mt-0.5 text-4xl font-extrabold tracking-tight text-brand-700">
         {formatPaise(headline.amountPaise)}
       </p>
 
@@ -84,14 +83,14 @@ export default function SettlementCard({
                   }
                 })
               }
-              className="flex-1 rounded-xl bg-ink-900 px-4 py-2.5 font-medium text-white disabled:opacity-60"
+              className="flex-1 bg-brand-500 px-4 py-2.5 font-semibold text-ink-50 disabled:opacity-60"
             >
               {pending ? 'Recording…' : 'Yes, it is paid'}
             </button>
             <button
               type="button"
               onClick={() => setConfirming(false)}
-              className="rounded-xl border border-ink-200 bg-white px-4 py-2.5 font-medium text-ink-700"
+              className="border border-ink-200 px-4 py-2.5 font-semibold text-ink-700"
             >
               Cancel
             </button>
@@ -101,7 +100,7 @@ export default function SettlementCard({
         <button
           type="button"
           onClick={() => setConfirming(true)}
-          className="mt-4 w-full rounded-xl bg-white px-4 py-2.5 font-medium text-ink-800 shadow-sm"
+          className="mt-4 w-full bg-brand-500 px-4 py-2.5 font-semibold text-ink-50"
         >
           Settle up
         </button>

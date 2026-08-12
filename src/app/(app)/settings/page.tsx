@@ -70,7 +70,7 @@ export default async function SettingsPage() {
 
   return (
     <main className="space-y-4 px-4 pt-6">
-      <h1 className="text-xl font-semibold tracking-tight text-ink-900">Settings</h1>
+      <h1 className="text-2xl font-extrabold tracking-tight text-ink-900">Settings</h1>
 
       <Section title="Household">
         <dl className="space-y-2 text-sm">
@@ -109,7 +109,7 @@ export default async function SettingsPage() {
           </div>
         )}
 
-        <div className="mt-4 border-t border-ink-100 pt-4">
+        <div className="mt-4 border-t border-ink-200 pt-4">
           <LeaveHouseholdButton />
         </div>
       </Section>
@@ -170,7 +170,7 @@ export default async function SettingsPage() {
       <form action={signOut} className="pb-4">
         <button
           type="submit"
-          className="w-full rounded-xl border border-ink-200 bg-white px-4 py-3 font-medium text-owing-500"
+          className="w-full rounded-xl border border-ink-200 bg-ink-100 px-4 py-3 font-medium text-owing-500"
         >
           Sign out
         </button>
@@ -189,8 +189,8 @@ function Section({
   children: React.ReactNode
 }) {
   return (
-    <section className="rounded-2xl bg-white p-5">
-      <h2 className="font-medium text-ink-900">{title}</h2>
+    <section className="bg-ink-100 p-5">
+      <h2 className="font-extrabold text-ink-900">{title}</h2>
       {subtitle && <p className="mt-0.5 text-sm text-ink-500">{subtitle}</p>}
       <div className="mt-3">{children}</div>
     </section>

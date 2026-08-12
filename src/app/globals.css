@@ -1,31 +1,44 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-ink-50: #f6f7f9;
-  --color-ink-100: #eceef2;
-  --color-ink-200: #d9dde5;
-  --color-ink-300: #b7bfcd;
-  --color-ink-400: #8b95a8;
-  --color-ink-500: #6b7688;
-  --color-ink-600: #525b6b;
-  --color-ink-700: #3f4654;
-  --color-ink-800: #2b303b;
-  --color-ink-900: #191d25;
+  /* Modernist neutral ramp — f3f2f2 (page bg) through 201e1d (ink text) */
+  --color-ink-50: #f3f2f2;
+  --color-ink-100: #eae9e9;
+  --color-ink-200: #d7d3d3;
+  --color-ink-300: #bab6b6;
+  --color-ink-400: #9b9797;
+  --color-ink-500: #7d7979;
+  --color-ink-600: #605d5d;
+  --color-ink-700: #444141;
+  --color-ink-800: #2d2b2b;
+  --color-ink-900: #201e1d;
 
-  --color-brand-50: #eef4ff;
-  --color-brand-100: #d9e5ff;
-  --color-brand-200: #bcd1ff;
-  --color-brand-500: #3b6ef5;
-  --color-brand-600: #2a55d4;
-  --color-brand-700: #2145ab;
+  /* Accent ramp — single warm red-orange, no secondary hue */
+  --color-brand-50: #fff2ef;
+  --color-brand-100: #ffe0d9;
+  --color-brand-200: #ffc4b8;
+  --color-brand-500: #ec3013;
+  --color-brand-600: #dd2b0f;
+  --color-brand-700: #ae1800;
 
-  --color-owed-500: #0f9d76;
-  --color-owed-50: #e7f7f2;
-  --color-owing-500: #d9483b;
-  --color-owing-50: #fdeeec;
+  --color-owed-500: #ec3013;
+  --color-owed-50: #fff2ef;
+  --color-owing-500: #7c1405;
+  --color-owing-50: #ffe0d9;
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Modernist is corner-square throughout — no rounded surfaces */
+  --radius: 0px;
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
 }
 
 :root {

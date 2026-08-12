@@ -90,7 +90,7 @@ export default function ContributionEditor({
             type="button"
             onClick={() => setModel(m)}
             className={`rounded-xl border px-3 py-2.5 text-sm font-medium capitalize transition ${
-              model === m ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-ink-200 bg-white text-ink-700'
+              model === m ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-ink-200 bg-ink-100 text-ink-700'
             }`}
           >
             {m === 'equal' ? 'Equal' : m === 'ratio' ? 'By ratio' : 'Fixed'}
@@ -139,7 +139,7 @@ export default function ContributionEditor({
                 value={fixed[m.id] ?? ''}
                 onChange={(e) => setFixed((prev) => ({ ...prev, [m.id]: e.target.value }))}
                 placeholder="30000"
-                className="w-full rounded-xl border border-ink-200 bg-white px-3 py-2.5 outline-none focus:border-brand-500"
+                className="w-full rounded-xl border border-ink-200 bg-ink-100 px-3 py-2.5 outline-none focus:border-brand-500"
               />
             </div>
           ))}

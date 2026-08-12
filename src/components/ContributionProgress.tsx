@@ -20,8 +20,8 @@ export default function ContributionProgress({
   const max = Math.max(...lines.flatMap((l) => [l.expectedPaise, l.actualPaidPaise]), 1)
 
   return (
-    <div className="space-y-4 rounded-2xl bg-white p-5">
-      <h2 className="font-medium text-ink-900">Who has paid what</h2>
+    <div className="space-y-4 bg-ink-100 p-5">
+      <h2 className="font-extrabold text-ink-900">Who has paid what</h2>
 
       {lines.map((line) => {
         const member = members.find((m) => m.id === line.userId)
@@ -33,7 +33,7 @@ export default function ContributionProgress({
         return (
           <div key={line.userId} className="space-y-1.5">
             <div className="flex items-baseline justify-between text-sm">
-              <span className="font-medium text-ink-800">
+              <span className="font-semibold text-ink-800">
                 {isMe ? 'You' : member?.display_name ?? 'Partner'}
               </span>
               <span className="tabular text-ink-500">
@@ -41,15 +41,13 @@ export default function ContributionProgress({
               </span>
             </div>
 
-            <div className="relative h-2.5 overflow-hidden rounded-full bg-ink-100">
+            <div className="relative h-2 overflow-hidden bg-ink-200">
               <div
-                className={`absolute inset-y-0 left-0 rounded-full ${
-                  ahead ? 'bg-owed-500' : 'bg-brand-500'
-                }`}
+                className={`absolute inset-y-0 left-0 ${ahead ? 'bg-brand-700' : 'bg-ink-500'}`}
                 style={{ width: `${pct}%` }}
               />
               <div
-                className="absolute inset-y-0 w-px bg-ink-400"
+                className="absolute inset-y-0 w-px bg-ink-900"
                 style={{ left: `${expectedPct}%` }}
                 aria-hidden
               />

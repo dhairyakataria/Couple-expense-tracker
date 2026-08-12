@@ -26,20 +26,20 @@ export default function TrendChart({ data }: { data: TrendPoint[] }) {
             dataKey="label"
             tickLine={false}
             axisLine={false}
-            tick={{ fontSize: 11, fill: '#8b95a8' }}
+            tick={{ fontSize: 11, fill: '#9b9797' }}
           />
           <Tooltip
-            cursor={{ fill: 'rgba(0,0,0,0.03)' }}
+            cursor={{ fill: 'rgba(32,30,29,0.05)' }}
             formatter={(value: number) => [formatPaiseCompact(value), 'Household']}
             contentStyle={{
-              borderRadius: 12,
-              border: '1px solid #d9dde5',
+              borderRadius: 0,
+              border: '1px solid #d7d3d3',
               fontSize: 13,
             }}
           />
-          <Bar dataKey="paise" radius={[6, 6, 0, 0]}>
+          <Bar dataKey="paise" radius={0}>
             {data.map((d, i) => (
-              <Cell key={i} fill={d.current ? '#3b6ef5' : '#bcd1ff'} />
+              <Cell key={i} fill={d.current ? '#ec3013' : '#ffc4b8'} />
             ))}
           </Bar>
         </BarChart>

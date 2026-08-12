@@ -48,7 +48,7 @@ export default function Keypad({
           type="button"
           onClick={() => press(key)}
           aria-label={key === 'del' ? 'Delete' : key}
-          className="flex h-14 items-center justify-center rounded-xl bg-white text-2xl font-medium text-ink-900 transition active:bg-ink-100"
+          className="flex h-14 items-center justify-center bg-ink-100 text-2xl font-semibold text-ink-900 transition active:bg-ink-200"
         >
           {key === 'del' ? <Delete className="h-6 w-6 text-ink-500" /> : key}
         </button>

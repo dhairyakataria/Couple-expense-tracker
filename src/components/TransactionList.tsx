@@ -40,13 +40,13 @@ export function TransactionRow({
   return (
     <Link
       href={`/transactions/${txn.id}`}
-      className="flex items-center gap-3 px-4 py-3 transition active:bg-ink-50"
+      className="flex items-center gap-3 px-4 py-3 transition active:bg-ink-200/60"
     >
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <p className="truncate font-medium text-ink-900">{title}</p>
+          <p className="truncate font-semibold text-ink-900">{title}</p>
           {txn.is_adjustment && (
-            <span className="shrink-0 rounded bg-ink-100 px-1.5 py-0.5 text-[10px] font-medium text-ink-500">
+            <span className="shrink-0 bg-ink-200 px-1.5 py-0.5 text-[10px] font-medium text-ink-500">
               Adjustment
             </span>
           )}
@@ -80,7 +80,7 @@ export default function TransactionList({
   }
 
   return (
-    <ul className="divide-y divide-ink-100">
+    <ul className="divide-y divide-ink-200">
       {transactions.map((t) => (
         <li key={t.id}>
           <TransactionRow txn={t} members={members} meId={meId} />
