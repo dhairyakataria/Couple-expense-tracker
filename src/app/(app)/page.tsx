@@ -55,17 +55,24 @@ export default async function DashboardPage() {
   const partnerSpend = sum((t) => t.txn_type === 'partner')
   const total = periodTxns.reduce((acc, t) => acc + t.amount_paise, 0)
 
-  const categoryTotals = new Map<string, number>()
+  const categoryTotals = new Map<string, { id: string | null; paise: number }>()
   for (const t of periodTxns) {
     const name = t.category?.name
     if (!name) continue
-    categoryTotals.set(name, (categoryTotals.get(name) ?? 0) + t.amount_paise)
+    const existing = categoryTotals.get(name)
+    categoryTotals.set(name, {
+      id: t.category?.id ?? null,
+      paise: (existing?.paise ?? 0) + t.amount_paise,
+    })
   }
   const topCategories: CategorySlice[] = [...categoryTotals.entries()]
-    .map(([name, paise]) => ({ name, paise }))
+    .map(([name, { id, paise }]) => ({ id, name, paise }))
     .filter((s) => s.paise > 0)
     .sort((a, b) => b.paise - a.paise)
     .slice(0, 5)
+
+  const periodQuery = `from=${startsOn}&to=${endsOn}`
+  const txnHref = (extra = '') => `/transactions?${periodQuery}${extra}`
 
   const MONTH_ABBR = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
@@ -105,13 +112,20 @@ export default async function DashboardPage() {
           label="Household"
           paise={current.householdTotalPaise}
           hint={current.jointTotalPaise > 0 ? 'includes joint account' : undefined}
+          href={txnHref('&type=household')}
         />
-        <StatTile label="Total spent" paise={total} />
-        <StatTile label="Your personal" paise={myPersonal} tone="muted" />
+        <StatTile label="Total spent" paise={total} href={txnHref()} />
+        <StatTile
+          label="Your personal"
+          paise={myPersonal}
+          tone="muted"
+          href={txnHref(`&type=personal&payer=${me.id}`)}
+        />
         <StatTile
           label={partner ? `${partner.display_name}'s personal` : 'Their personal'}
           paise={partnerPersonal}
           tone="muted"
+          href={partner ? txnHref(`&type=personal&payer=${partner.id}`) : undefined}
         />
       </div>
 
@@ -121,6 +135,7 @@ export default async function DashboardPage() {
           paise={partnerSpend}
           hint="gifts and reimbursables combined"
           tone="muted"
+          href={txnHref('&type=partner')}
         />
       )}
 
@@ -133,7 +148,10 @@ export default async function DashboardPage() {
 
       <section className="rounded-2xl bg-white p-5">
         <h2 className="mb-3 font-medium text-ink-900">Where it went</h2>
-        <TopCategories slices={topCategories} />
+        <TopCategories
+          slices={topCategories}
+          hrefFor={(s) => (s.id ? txnHref(`&category=${s.id}`) : null)}
+        />
       </section>
 
       <section className="overflow-hidden rounded-2xl bg-white">

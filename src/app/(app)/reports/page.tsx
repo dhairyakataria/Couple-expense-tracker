@@ -45,17 +45,23 @@ export default async function ReportsPage({
   const sum = (fn: (t: (typeof txns)[number]) => boolean) =>
     txns.filter(fn).reduce((acc, t) => acc + t.amount_paise, 0)
 
-  const byCategory = new Map<string, number>()
+  const byCategory = new Map<string, { id: string | null; paise: number }>()
   for (const t of txns) {
     const key = t.category?.name ?? 'Uncategorised'
-    byCategory.set(key, (byCategory.get(key) ?? 0) + t.amount_paise)
+    const existing = byCategory.get(key)
+    byCategory.set(key, {
+      id: t.category?.id ?? null,
+      paise: (existing?.paise ?? 0) + t.amount_paise,
+    })
   }
   const categories: CategorySlice[] = [...byCategory.entries()]
-    .map(([name, paise]) => ({ name, paise }))
+    .map(([name, { id, paise }]) => ({ id, name, paise }))
     .filter((s) => s.paise > 0)
     .sort((a, b) => b.paise - a.paise)
 
   const exportHref = `/api/export?from=${selected.startsOn}&to=${endsOn}`
+  const periodQuery = `from=${selected.startsOn}&to=${endsOn}`
+  const txnHref = (extra = '') => `/transactions?${periodQuery}${extra}`
 
   return (
     <main className="space-y-4 px-4 pt-6">
@@ -74,23 +80,46 @@ export default async function ReportsPage({
       />
 
       <div className="grid grid-cols-2 gap-3">
-        <StatTile label="Household" paise={selected.householdTotalPaise} />
-        <StatTile label="Everything" paise={txns.reduce((a, t) => a + t.amount_paise, 0)} />
-        <StatTile label="Personal" paise={sum((t) => t.txn_type === 'personal')} tone="muted" />
-        <StatTile label="For each other" paise={sum((t) => t.txn_type === 'partner')} tone="muted" />
+        <StatTile
+          label="Household"
+          paise={selected.householdTotalPaise}
+          href={txnHref('&type=household')}
+        />
+        <StatTile
+          label="Everything"
+          paise={txns.reduce((a, t) => a + t.amount_paise, 0)}
+          href={txnHref()}
+        />
+        <StatTile
+          label="Personal"
+          paise={sum((t) => t.txn_type === 'personal')}
+          tone="muted"
+          href={txnHref('&type=personal')}
+        />
+        <StatTile
+          label="For each other"
+          paise={sum((t) => t.txn_type === 'partner')}
+          tone="muted"
+          href={txnHref('&type=partner')}
+        />
       </div>
 
       <ContributionProgress lines={selected.lines} members={members} meId={me.id} />
 
       <section className="rounded-2xl bg-white p-5">
         <h2 className="mb-3 font-medium text-ink-900">By person</h2>
-        <ul className="space-y-2 text-sm">
+        <ul className="text-sm">
           {members.map((m) => (
-            <li key={m.id} className="flex justify-between">
-              <span className="text-ink-700">{m.id === me.id ? 'You' : m.display_name}</span>
-              <span className="tabular font-medium text-ink-900">
-                {formatPaise(sum((t) => t.payer_user_id === m.id))} paid
-              </span>
+            <li key={m.id}>
+              <Link
+                href={txnHref(`&payer=${m.id}`)}
+                className="flex justify-between rounded-lg py-1 transition active:opacity-70"
+              >
+                <span className="text-ink-700">{m.id === me.id ? 'You' : m.display_name}</span>
+                <span className="tabular font-medium text-ink-900">
+                  {formatPaise(sum((t) => t.payer_user_id === m.id))} paid
+                </span>
+              </Link>
             </li>
           ))}
         </ul>
@@ -98,7 +127,10 @@ export default async function ReportsPage({
 
       <section className="rounded-2xl bg-white p-5">
         <h2 className="mb-3 font-medium text-ink-900">By category</h2>
-        <TopCategories slices={categories} />
+        <TopCategories
+          slices={categories}
+          hrefFor={(s) => (s.id ? txnHref(`&category=${s.id}`) : null)}
+        />
       </section>
 
       <section className="space-y-3 rounded-2xl bg-white p-5">
