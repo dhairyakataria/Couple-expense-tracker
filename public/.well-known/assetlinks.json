@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "app.together.household",
-      "sha256_cert_fingerprints": ["REPLACE_WITH_YOUR_SIGNING_KEY_FINGERPRINT"]
+      "sha256_cert_fingerprints": ["E8:30:13:BA:07:B1:75:00:06:55:B1:A2:9C:DB:A7:CF:0E:D5:DC:A0:87:D3:DC:34:F7:DB:92:97:46:C4:AA:72"]
     }
   }
 ]
