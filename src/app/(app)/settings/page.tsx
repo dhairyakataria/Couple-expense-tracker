@@ -4,6 +4,7 @@ import { requireHousehold } from '@/lib/data'
 import { addMonths, formatPeriodLabel, periodStartFor, todayIso } from '@/lib/settlement/periods'
 import { signOut } from '@/app/login/actions'
 import ContributionEditor from '@/components/ContributionEditor'
+import ProfileEditor from '@/components/ProfileEditor'
 import InvitePanel from '@/components/InvitePanel'
 import { CategoryManager, PaymentMethodManager } from '@/components/ManageLists'
 import LeaveHouseholdButton from '@/components/LeaveHouseholdButton'
@@ -71,6 +72,10 @@ export default async function SettingsPage() {
   return (
     <main className="space-y-4 px-4 pt-6">
       <h1 className="text-2xl font-extrabold tracking-tight text-ink-900">Settings</h1>
+
+      <Section title="Your profile">
+        <ProfileEditor initialName={me.display_name} />
+      </Section>
 
       <Section title="Household">
         <dl className="space-y-2 text-sm">
