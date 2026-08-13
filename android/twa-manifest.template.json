@@ -13,7 +13,7 @@
   ],
 
   "packageId": "app.together.household",
-  "host": "YOUR-APP.vercel.app",
+  "host": "couple-finance.vercel.app",
   "name": "Together",
   "launcherName": "Together",
   "display": "standalone",
@@ -27,9 +27,9 @@
   "backgroundColor": "#f6f7f9",
 
   "startUrl": "/",
-  "webManifestUrl": "https://YOUR-APP.vercel.app/manifest.webmanifest",
-  "iconUrl": "https://YOUR-APP.vercel.app/icons/icon-512.png",
-  "maskableIconUrl": "https://YOUR-APP.vercel.app/icons/icon-maskable-512.png",
+  "webManifestUrl": "https://couple-finance.vercel.app/manifest.webmanifest",
+  "iconUrl": "https://couple-finance.vercel.app/icons/icon-512.png",
+  "maskableIconUrl": "https://couple-finance.vercel.app/icons/icon-maskable-512.png",
 
   "appVersionName": "1.0.0",
   "appVersionCode": 1,
@@ -39,7 +39,7 @@
       "name": "Add expense",
       "shortName": "Add",
       "url": "/add",
-      "chosenIconUrl": "https://YOUR-APP.vercel.app/icons/icon-192.png"
+      "chosenIconUrl": "https://couple-finance.vercel.app/icons/icon-192.png"
     }
   ],
 
@@ -53,7 +53,7 @@
   "features": {},
   "isChromeOSOnly": false,
   "isMetaQuest": false,
-  "fullScopeUrl": "https://YOUR-APP.vercel.app/",
+  "fullScopeUrl": "https://couple-finance.vercel.app/",
   "minSdkVersion": 23,
   "shareTarget": null,
   "orientationLock": false

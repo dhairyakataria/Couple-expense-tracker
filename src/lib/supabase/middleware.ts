@@ -3,7 +3,15 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 type CookiesToSet = { name: string; value: string; options: CookieOptions }[]
 
-const PUBLIC_PATHS = ['/login', '/auth', '/invite', '/manifest.webmanifest', '/sw.js', '/icons']
+const PUBLIC_PATHS = [
+  '/login',
+  '/auth',
+  '/invite',
+  '/manifest.webmanifest',
+  '/sw.js',
+  '/icons',
+  '/.well-known',
+]
 
 export async function updateSession(request: NextRequest) {
   let cookiesToApply: CookiesToSet = []
