@@ -94,7 +94,11 @@ export default function TransactionForm({
     if (hinted && !v.categoryId) set('categoryId', hinted)
   }
 
-  const save = () =>
+  const save = () => {
+    if (paise <= 0) {
+      setError('Enter an amount greater than ₹0.')
+      return
+    }
     start(async () => {
       setError(null)
       const payload = {
@@ -127,6 +131,7 @@ export default function TransactionForm({
 
       router.push(transactionId ? `/transactions/${transactionId}` : '/')
     })
+  }
 
   return (
     <div className="flex min-h-[calc(100vh-6rem)] flex-col">
